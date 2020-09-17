@@ -26,6 +26,7 @@ export default {
   'route.match.parameter.position': '参数位置',
   'route.match.http.request.header': 'HTTP 请求头',
   'route.match.request.parameter': '请求参数',
+  'route.match.userDefine': '用户自定义',
   'route.match.parameter.name': '参数名称',
   'route.match.operational.character': '运算符',
   'route.match.equal': '等于',

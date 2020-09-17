@@ -88,7 +88,7 @@ const MatchingRulesView: React.FC<Props> = ({ data, disabled, onChange }) => {
             renderText = 'Cookie';
             break;
           default:
-            renderText = '';
+            renderText = formatMessage({ id: 'route.match.userDefine' });
         }
         return renderText;
       },
@@ -187,6 +187,7 @@ const MatchingRulesView: React.FC<Props> = ({ data, disabled, onChange }) => {
             <Option value="http">{formatMessage({ id: 'route.match.http.request.header' })}</Option>
             <Option value="arg">{formatMessage({ id: 'route.match.request.parameter' })}</Option>
             <Option value="cookie">Cookie</Option>
+            <Option value="userDefine">{formatMessage({ id: 'route.match.userDefine' })}</Option>
           </Select>
         </Form.Item>
         <Form.Item

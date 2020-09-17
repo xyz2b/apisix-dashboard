@@ -26,6 +26,7 @@ export default {
   'route.match.parameter.position': 'Parameter Position',
   'route.match.http.request.header': 'HTTP Request Header',
   'route.match.request.parameter': 'Request Parameter',
+  'route.match.userDefine': 'User Define',
   'route.match.parameter.name': 'Parameter Name',
   'route.match.operational.character': 'Operational Character',
   'route.match.equal': 'Equal',

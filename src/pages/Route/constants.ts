@@ -100,4 +100,4 @@ export const HASH_KEY_LIST = [
   'arg_id',
 ];
 
-export const HASH_ON_LIST = ['vars', 'header', 'cookie', 'consumer'];
+export const HASH_ON_LIST = ['vars', 'header', 'cookie', 'consumer', 'userDefine'];

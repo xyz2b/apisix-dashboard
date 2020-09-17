@@ -133,7 +133,13 @@ const transformVarsToRules = (
   data: [string, RouteModule.Operator, string][] = [],
 ): RouteModule.MatchingRule[] =>
   data.map(([key, operator, value]) => {
-    const [, position, name] = key.split(/^(cookie|http|arg)_/);
+    const [, position, _name] = key.split(/^(cookie|http|arg)_/);
+    let name;
+    if(position==undefined) {
+      name = key;
+    } else {
+      name = _name;
+    }
     return {
       position: position as RouteModule.VarPosition,
       name,

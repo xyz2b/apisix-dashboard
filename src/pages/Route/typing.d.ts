@@ -17,7 +17,7 @@
 declare namespace RouteModule {
   type Operator = '==' | '~=' | '>' | '<' | '~~';
 
-  type VarPosition = 'arg' | 'http' | 'cookie';
+  type VarPosition = 'arg' | 'http' | 'cookie' | 'userDefine';
 
   interface MatchingRule {
     position: VarPosition;
