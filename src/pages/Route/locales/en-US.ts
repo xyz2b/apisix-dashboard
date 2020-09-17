@@ -71,6 +71,7 @@ export default {
   'route.meta.group.description': 'GroupDescription',
 
   'route.request.config.domain.name': 'Domain Name',
+  'route.request.config.priority': 'Route Priority',
   'route.request.config.domain.or.ip':
     'Domain Name or IP, support for generic Domain Name, for example: *.test.com',
   'route.request.config.input.domain.name': 'Please input Domain Name',

@@ -68,6 +68,8 @@ export default {
   'route.meta.group.description': '分组描述',
 
   'route.request.config.domain.name': '域名',
+  'route.request.config.priority': '优先级',
+  'route.request.config.priority.input': '请输入数字，越大优先级越高',
   'route.request.config.domain.or.ip': '域名或IP，支持泛域名，如：*.test.com',
   'route.request.config.input.domain.name': '请输入域名',
   'route.request.config.domain.name.rule': '仅支持字母、数字和 * ，且 * 只能是在开头，支持单个 * ',

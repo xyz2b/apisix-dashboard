@@ -16,7 +16,7 @@
  */
 import React from 'react';
 import Form from 'antd/es/form';
-import { Checkbox, Button, Input, Switch, Select, Row, Col } from 'antd';
+import { Checkbox, Button, Input, InputNumber, Switch, Select, Row, Col } from 'antd';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 import { useIntl } from 'umi';
@@ -192,14 +192,19 @@ const RequestConfigView: React.FC<Props> = ({ data, disabled, onChange }) => {
       <Form.Item label="WebSocket" name="websocket" valuePropName="checked">
         <Switch disabled={disabled} />
       </Form.Item>
-      {/* <Form.Item
-        label="优先级"
+      <Form.Item
+        label={formatMessage({ id: 'route.request.config.priority' })}
         name="priority"
-        rules={[{ required: true, message: '请输入优先级' }]}
+        rules={[
+          {
+            required: true,
+            message: formatMessage({ id: 'route.request.config.priority.input' }),
+          },
+        ]}
         extra=""
       >
-        <InputNumber placeholder="优先级" disabled={disabled} min={0} max={1000} />
-      </Form.Item> */}
+        <InputNumber placeholder={formatMessage({ id: 'route.request.config.priority.input' })} disabled={disabled} min={0} max={1000} />
+      </Form.Item>
       {renderHosts()}
       {renderPaths()}
       <Form.Item

@@ -123,7 +123,7 @@ declare namespace RouteModule {
     status: boolean;
     name: string;
     desc: string;
-    priority?: number;
+    priority: number;
     methods: HttpMethod[];
     uris: string[];
     hosts: string[];

@@ -54,10 +54,10 @@ const Page: React.FC = () => {
           </Tag>
         )),
     },
-    // {
-    //   title: '优先级',
-    //   dataIndex: 'priority',
-    // },
+    {
+      title: '优先级',
+      dataIndex: 'priority',
+    },
     {
       title: formatMessage({ id: 'route.list.description' }),
       dataIndex: 'description',
