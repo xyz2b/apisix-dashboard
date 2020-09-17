@@ -203,7 +203,13 @@ const RequestConfigView: React.FC<Props> = ({ data, disabled, onChange }) => {
         ]}
         extra=""
       >
-        <InputNumber placeholder={formatMessage({ id: 'route.request.config.priority.input' })} disabled={disabled} min={0} max={1000} />
+        <InputNumber
+          placeholder={formatMessage({ id: 'route.request.config.priority.input' })}
+          disabled={disabled}
+          min={0}
+          max={1000}
+          style={{ width: '60%' }}
+        />
       </Form.Item>
       {renderHosts()}
       {renderPaths()}
