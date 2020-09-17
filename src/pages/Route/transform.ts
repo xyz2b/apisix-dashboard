@@ -70,8 +70,11 @@ export const transformStepData = ({
         case 'http':
           key = `http_${name}`;
           break;
-        default:
+        case 'arg':
           key = `arg_${name}`;
+          break;
+        default:
+          key = `${name}`;
       }
       return [key, operator, value];
     }),
