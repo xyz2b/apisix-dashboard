@@ -55,7 +55,7 @@ const Page: React.FC = () => {
         )),
     },
     {
-      title: '优先级',
+      title: formatMessage({ id: 'route.request.config.priority' }),
       dataIndex: 'priority',
     },
     {

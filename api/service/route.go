@@ -71,6 +71,7 @@ func (arr *ApisixRouteRequest) Parse(r *RouteRequest) {
 	arr.Methods = r.Methods
 	arr.Uris = r.Uris
 	arr.Hosts = r.Hosts
+	arr.RemoteAddrs = r.RemoteAddrs
 	arr.Vars = r.Vars
 	arr.Upstream = r.Upstream
 	arr.Plugins = r.Plugins
@@ -178,6 +179,7 @@ type RouteRequest struct {
 	Name             string                 `json:"name"`
 	Desc             string                 `json:"desc,omitempty"`
 	Priority         int64                  `json:"priority,omitempty"`
+  RemoteAddrs      []string               `json:"remote_addrs,omitempty"`
 	Methods          []string               `json:"methods,omitempty"`
 	Uris             []string               `json:"uris"`
 	Hosts            []string               `json:"hosts,omitempty"`
@@ -288,6 +290,7 @@ func (r *ApisixRouteResponse) Parse() (*RouteRequest, error) {
 		Methods:          o.Methods,
 		Uris:             o.Uris,
 		Hosts:            o.Hosts,
+    RemoteAddrs:      o.RemoteAddrs,
 		Redirect:         redirect,
 		Upstream:         o.Upstream,
 		UpstreamId:       o.UpstreamId,
@@ -355,6 +358,43 @@ func (r Redirect) MarshalJSON() ([]byte, error) {
 	}
 }
 
+//type Checks struct {
+//  Active *ActiveCheck `json:"active,omitempty"`
+//  Passive *PassiveCheck `json:"passive,omitempty"`
+//}
+//
+//type ActiveCheck struct {
+//  Type string `json:"type,omitempty"`
+//  Timeout string `json:"timeout,omitempty"`
+//  HttpPath string `json:"http_path,omitempty"`
+//  Host string `json:"host,omitempty"`
+//  Port int64 `json:"port,omitempty"`
+//  HttpsVerifyCertificate string `json:"https_verify_certificate,omitempty"`
+//  Healthy *CheckHealthy `json:"healthy,omitempty"`
+//  Unhealthy *CheckUnhealthy `json:"unhealthy,omitempty"`
+//  ReqHeaders []string `json:"req_headers,omitempty"`
+//}
+//
+//type CheckHealthy struct {
+//  Interval int64 `json:"interval,omitempty"`
+//  Successes int64 `json:"successes,omitempty"`
+//  HttpStatuses []int64 `json:"http_statuses,omitempty"`
+//}
+//
+//type CheckUnhealthy struct {
+//  Interval int64 `json:"interval,omitempty"`
+//  HttpStatuses []int64 `json:"http_statuses,omitempty"`
+//  HttpFailures int64 `json:"http_failures,omitempty"`
+//  TcpFailures int64 `json:"tcp_failures,omitempty"`
+//  Timeouts int64 `json:"timeouts,omitempty"`
+//}
+//
+//type PassiveCheck struct {
+//  Type string `json:"type,omitempty"`
+//  Healthy *CheckHealthy `json:"healthy,omitempty"`
+//  Unhealthy *CheckUnhealthy `json:"unhealthy,omitempty"`
+//}
+
 type Upstream struct {
 	UType           string                 `json:"type"`
 	Nodes           map[string]int64       `json:"nodes"`
@@ -378,17 +418,18 @@ type UpstreamPath struct {
 }
 
 type ApisixRouteRequest struct {
-	Desc       string                 `json:"desc,omitempty"`
-	Priority   int64                  `json:"priority"`
-	Methods    []string               `json:"methods,omitempty"`
-	Uris       []string               `json:"uris,omitempty"`
-	Hosts      []string               `json:"hosts,omitempty"`
-	Vars       [][]string             `json:"vars,omitempty"`
-	Upstream   *Upstream              `json:"upstream,omitempty"`
-	UpstreamId string                 `json:"upstream_id,omitempty"`
-	Plugins    map[string]interface{} `json:"plugins,omitempty"`
-	Script     string                 `json:"script,omitempty"`
-	//Name     string                 `json:"name"`
+	Desc        string                 `json:"desc,omitempty"`
+	Priority    int64                  `json:"priority"`
+	Methods     []string               `json:"methods,omitempty"`
+	Uris        []string               `json:"uris,omitempty"`
+	Hosts       []string               `json:"hosts,omitempty"`
+  RemoteAddrs []string               `json:"remote_addrs,omitempty"`
+	Vars        [][]string             `json:"vars,omitempty"`
+	Upstream    *Upstream              `json:"upstream,omitempty"`
+	UpstreamId  string                 `json:"upstream_id,omitempty"`
+	Plugins     map[string]interface{} `json:"plugins,omitempty"`
+	Script      string                 `json:"script,omitempty"`
+	//Name      string                 `json:"name"`
 }
 
 // ApisixRouteResponse is response from apisix admin api
@@ -410,6 +451,7 @@ type Value struct {
 	Methods        []string               `json:"methods"`
 	Uris           []string               `json:"uris"`
 	Hosts          []string               `json:"hosts"`
+  RemoteAddrs    []string               `json:"remote_addrs"`
 	Vars           [][]string             `json:"vars"`
 	Upstream       *Upstream              `json:"upstream,omitempty"`
 	UpstreamId     string                 `json:"upstream_id,omitempty"`
@@ -421,19 +463,20 @@ type Value struct {
 
 type Route struct {
 	Base
-	Name            string `json:"name"`
-	Description     string `json:"description,omitempty"`
-	Hosts           string `json:"hosts"`
-	Uris            string `json:"uris"`
-	UpstreamNodes   string `json:"upstream_nodes"`
-	UpstreamId      string `json:"upstream_id"`
-	Priority        int64  `json:"priority"`
-	Content         string `json:"content"`
-	Script          string `json:"script"`
-	ContentAdminApi string `json:"content_admin_api"`
-	RouteGroupId    string `json:"route_group_id"`
-	RouteGroupName  string `json:"route_group_name"`
-	Status          bool   `json:"status"`
+	Name            string    `json:"name"`
+	Description     string    `json:"description,omitempty"`
+	Hosts           string    `json:"hosts"`
+  RemoteAddrs     string    `json:"remote_addrs"`
+	Uris            string    `json:"uris"`
+	UpstreamNodes   string    `json:"upstream_nodes"`
+	UpstreamId      string    `json:"upstream_id"`
+	Priority        int64     `json:"priority"`
+	Content         string    `json:"content"`
+	Script          string    `json:"script"`
+	ContentAdminApi string    `json:"content_admin_api"`
+	RouteGroupId    string    `json:"route_group_id"`
+	RouteGroupName  string    `json:"route_group_name"`
+	Status          bool      `json:"status"`
 }
 
 type RouteResponse struct {
@@ -441,6 +484,7 @@ type RouteResponse struct {
 	Name           string    `json:"name"`
 	Description    string    `json:"description,omitempty"`
 	Hosts          []string  `json:"hosts,omitempty"`
+  RemoteAddrs    []string  `json:"remote_addrs,omitempty"`
 	Uris           []string  `json:"uris,omitempty"`
 	Upstream       *Upstream `json:"upstream,omitempty"`
 	UpstreamId     string    `json:"upstream_id,omitempty"`
@@ -473,6 +517,16 @@ func (rr *RouteResponse) Parse(r *Route) {
 			logger.Error(err.Error())
 		}
 	}
+
+  // remote_addrs
+  if len(r.RemoteAddrs) > 0 {
+    var remoteAddrs []string
+    if err := json.Unmarshal([]byte(r.RemoteAddrs), &remoteAddrs); err == nil {
+      rr.RemoteAddrs = remoteAddrs
+    } else {
+      logger.Error(err.Error())
+    }
+  }
 
 	// uris
 	if len(r.Uris) > 0 {

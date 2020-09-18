@@ -17,13 +17,11 @@
 package conf
 
 import (
-	"fmt"
-	"io/ioutil"
-	"os"
-	"path/filepath"
-	"runtime"
-
-	"github.com/tidwall/gjson"
+  "fmt"
+  "github.com/tidwall/gjson"
+  "io/ioutil"
+  "os"
+  "path/filepath"
 )
 
 const ServerPort = 8080
@@ -54,12 +52,12 @@ func setEnvironment() {
 	} else {
 		ENV = env
 	}
-	_, basePath, _, _ = runtime.Caller(1)
+  basePath, _ = os.Getwd()
 }
 
 func configurationPath() string {
 	if ENV == LOCAL {
-		return filepath.Join(filepath.Dir(basePath), "conf.json")
+		return filepath.Join(basePath, "conf.json")
 	} else {
 		return confPath
 	}

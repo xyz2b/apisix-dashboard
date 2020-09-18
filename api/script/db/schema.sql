@@ -6,6 +6,7 @@ CREATE TABLE `routes` (
   `name` varchar(200) NOT NULL unique, -- not support yet
   `description` varchar(200) DEFAULT NULL,
   `hosts` text,
+  `remote_addrs` text,
   `uris` text,
   `upstream_nodes` text,
   `upstream_id` varchar(64) , -- fk
