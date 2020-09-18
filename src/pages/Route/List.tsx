@@ -45,6 +45,16 @@ const Page: React.FC = () => {
         )),
     },
     {
+      title: formatMessage({ id: 'route.list.remote.addrs' }),
+      dataIndex: 'remote_addrs',
+      render: (_, record) =>
+        record.remote_addrs.map((remote_addr) => (
+          <Tag key={remote_addr} color="geekblue">
+            {remote_addr}
+          </Tag>
+        )),
+    },
+    {
       title: formatMessage({ id: 'route.list.path' }),
       dataIndex: 'uri',
       render: (_, record) =>

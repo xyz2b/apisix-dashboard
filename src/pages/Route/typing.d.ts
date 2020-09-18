@@ -36,6 +36,7 @@ declare namespace RouteModule {
     desc: string;
     uris: string[];
     hosts: string[];
+    remote_addrs: string[];
     status: boolean;
   };
 
@@ -46,6 +47,7 @@ declare namespace RouteModule {
     priority: number;
     protocols: RequestProtocol[];
     websocket: boolean;
+    remote_addrs: string[];
     hosts: string[];
     paths: string[];
     methods: HttpMethod[];
@@ -125,6 +127,7 @@ declare namespace RouteModule {
     desc: string;
     priority: number;
     methods: HttpMethod[];
+    remote_addrs: string[];
     uris: string[];
     hosts: string[];
     protocols: RequestProtocol[];

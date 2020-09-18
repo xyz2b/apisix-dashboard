@@ -98,6 +98,67 @@ const RequestConfigView: React.FC<Props> = ({ data, disabled, onChange }) => {
     </Form.List>
   );
 
+  const renderRemoteAddrs = () => (
+    <Form.List name="remote_addrs">
+      {(fields, { add, remove }) => {
+        return (
+          <div>
+            {fields.map((field, index) => (
+              <Form.Item
+                {...(index === 0 ? FORM_ITEM_LAYOUT : FORM_ITEM_WITHOUT_LABEL)}
+                label={index === 0 ? formatMessage({ id: 'route.request.config.remote.addrs.name' }) : ''}
+                key={field.key}
+                extra={
+                  index === 0 ? formatMessage({ id: 'route.request.config.remote.addrs.ip.or.ips' }) : ''
+                }
+              >
+                <Form.Item
+                  {...field}
+                  validateTrigger={['onChange', 'onBlur']}
+                  rules={[
+                    {
+                      pattern: new RegExp(/(^\*?[0-9.]+$|^\*$)/, 'g'),
+                      message: formatMessage({ id: 'route.request.config.remote.addrs.rule' }),
+                    },
+                  ]}
+                  noStyle
+                >
+                  <Input
+                    placeholder={formatMessage({ id: 'route.request.config.remote.addrs.name' })}
+                    style={{ width: '60%' }}
+                    disabled={disabled}
+                  />
+                </Form.Item>
+                {!disabled && fields.length > 1 ? (
+                  <MinusCircleOutlined
+                    className="dynamic-delete-button"
+                    style={{ margin: '0 8px' }}
+                    onClick={() => {
+                      remove(field.name);
+                    }}
+                  />
+                ) : null}
+              </Form.Item>
+            ))}
+            {!disabled && (
+              <Form.Item {...FORM_ITEM_WITHOUT_LABEL}>
+                <Button
+                  type="dashed"
+                  onClick={() => {
+                    add();
+                  }}
+                >
+                  <PlusOutlined /> {formatMessage({ id: 'route.request.config.create' })}
+                </Button>
+              </Form.Item>
+            )}
+          </div>
+        );
+      }}
+    </Form.List>
+  );
+
+
   const renderPaths = () => (
     <Form.List name="paths">
       {(fields, { add, remove }) => {
@@ -211,6 +272,7 @@ const RequestConfigView: React.FC<Props> = ({ data, disabled, onChange }) => {
           style={{ width: '60%' }}
         />
       </Form.Item>
+      {renderRemoteAddrs()}
       {renderHosts()}
       {renderPaths()}
       <Form.Item

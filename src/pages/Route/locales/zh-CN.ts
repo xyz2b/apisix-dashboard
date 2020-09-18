@@ -68,6 +68,10 @@ export default {
   'route.meta.group.description': '分组描述',
 
   'route.request.config.domain.name': '域名',
+  'route.request.config.remote.addrs.name': '对端地址',
+  'route.request.config.remote.addrs.rule': '仅支持IP或网段',
+  'route.request.config.remote.addrs.ip.or.ips': 'IP或网段，如127.0.0.1、172.0.0.0/24',
+  'route.request.config.input.remote.addrs.name': '请输入IP',
   'route.request.config.priority': '优先级',
   'route.request.config.priority.input': '请输入数字，越大优先级越高',
   'route.request.config.domain.or.ip': '域名或IP，支持泛域名，如：*.test.com',
@@ -147,6 +151,7 @@ export default {
 
   'route.list.name': '名称',
   'route.list.domain.name': '域名',
+  'route.list.remote.addrs': '对端地址',
   'route.list.path': '路径',
   'route.list.description': '描述',
   'route.list.group.name': '路由分组',

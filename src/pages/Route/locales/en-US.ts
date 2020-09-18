@@ -72,6 +72,10 @@ export default {
 
   'route.request.config.domain.name': 'Domain Name',
   'route.request.config.priority': 'Route Priority',
+  'route.request.config.remote.addrs.name': 'Remote Addrs',
+  'route.request.config.remote.addrs.rule': 'Only IP or network segment supported.',
+  'route.request.config.remote.addrs.ip.or.ips': 'IP or network segment, such as 127.0.0.1、172.0.0.0/24',
+  'route.request.config.input.remote.addrs.name': 'Please input IP',
   'route.request.config.domain.or.ip':
     'Domain Name or IP, support for generic Domain Name, for example: *.test.com',
   'route.request.config.input.domain.name': 'Please input Domain Name',
@@ -151,6 +155,7 @@ export default {
 
   'route.list.name': 'Name',
   'route.list.domain.name': 'Domain Name',
+  'route.list.remote.addrs': 'Remote Addrs',
   'route.list.path': 'Path',
   'route.list.description': 'Description',
   'route.list.group.name': 'RouteGroup',

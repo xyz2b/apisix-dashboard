@@ -126,7 +126,7 @@ export const transformStepData = ({
     ]);
   }
 
-  return pick(data, ['name', 'desc', 'protocols', 'hosts', 'uris', 'methods', 'redirect', 'vars']);
+  return pick(data, ['name', 'desc', 'protocols', 'remote_addrs', 'hosts', 'uris', 'methods', 'redirect', 'vars']);
 };
 
 const transformVarsToRules = (
@@ -134,12 +134,7 @@ const transformVarsToRules = (
 ): RouteModule.MatchingRule[] =>
   data.map(([key, operator, value]) => {
     const [, position, _name] = key.split(/^(cookie|http|arg)_/);
-    let name;
-    if(position==undefined) {
-      name = key;
-    } else {
-      name = _name;
-    }
+    const name = position == undefined ? key : _name;
     return {
       position: position as RouteModule.VarPosition,
       name,
@@ -173,6 +168,7 @@ export const transformRouteData = (data: RouteModule.Body) => {
     uris,
     protocols,
     hosts,
+    remote_addrs,
     vars,
     redirect,
     status,
@@ -187,6 +183,7 @@ export const transformRouteData = (data: RouteModule.Body) => {
     protocols: protocols.filter((item) => item !== 'websocket'),
     websocket: protocols.includes('websocket'),
     hosts,
+    remote_addrs,
     paths: uris,
     methods,
     advancedMatchingRules: transformVarsToRules(vars),
