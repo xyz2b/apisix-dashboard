@@ -117,7 +117,7 @@ const RequestConfigView: React.FC<Props> = ({ data, disabled, onChange }) => {
                   validateTrigger={['onChange', 'onBlur']}
                   rules={[
                     {
-                      pattern: new RegExp(/(^\*?[0-9.]+$|^\*$)/, 'g'),
+                      pattern: new RegExp(/^([1-9]?\d|1\d{2}|2[0-4]\d|25[0-5])(\.(25[0-5]|1\d{2}|2[0-4]\d|[1-9]?\d)){3}\/[1-3]{0, 1}[0-9]{0, 1}$/, 'g'),
                       message: formatMessage({ id: 'route.request.config.remote.addrs.rule' }),
                     },
                   ]}
