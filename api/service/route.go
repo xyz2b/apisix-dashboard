@@ -673,6 +673,16 @@ func ToRoute(routeRequest *RouteRequest,
 	} else {
 		rd.Hosts = string(hb)
 	}
+
+	// remoteAddrs
+  remoteAddrs := routeRequest.RemoteAddrs
+  if rb, err := json.Marshal(remoteAddrs); err != nil {
+    e := errno.FromMessage(errno.DBRouteCreateError, err.Error())
+    logger.Warn(e.Msg)
+  } else {
+    rd.RemoteAddrs = string(rb)
+  }
+
 	// uris
 	uris := routeRequest.Uris
 	if ub, err := json.Marshal(uris); err != nil {
